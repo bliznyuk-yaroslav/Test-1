@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "QuestionType" AS ENUM ('BOOLEAN', 'INPUT', 'CHECKBOX');
+CREATE TYPE "QuestionType" AS ENUM ('BOOLEAN', 'INPUT', 'CHECKBOX', 'TEXT');
 
 -- CreateTable
 CREATE TABLE "Quiz" (
