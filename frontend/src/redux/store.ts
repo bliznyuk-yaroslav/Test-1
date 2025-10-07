@@ -12,16 +12,15 @@ import {
 } from "redux-persist";
 import { catalogReducer } from "./item/slice.ts";
 
-// Конфігурація redux-persist
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["catalog"], // що зберігаємо
+  whitelist: ["catalog"], 
 };
 
 const rootReducer = combineReducers({
   catalog: catalogReducer,
-  // тут можна додати інші reducers
+  
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

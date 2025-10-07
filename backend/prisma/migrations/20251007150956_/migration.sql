@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "QuestionType" AS ENUM ('BOOLEAN', 'INPUT', 'CHECKBOX', 'TEXT');
+CREATE TYPE "QuestionType" AS ENUM ('BOOLEAN', 'INPUT', 'CHECKBOX');
 
 -- CreateTable
 CREATE TABLE "Quiz" (
@@ -17,6 +17,7 @@ CREATE TABLE "Question" (
     "type" "QuestionType" NOT NULL,
     "text" TEXT NOT NULL,
     "options" TEXT,
+    "correctAnswer" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Question_pkey" PRIMARY KEY ("id")

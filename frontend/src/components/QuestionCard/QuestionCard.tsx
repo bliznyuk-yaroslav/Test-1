@@ -65,7 +65,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
             onChange={(e) => onAnswer(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === 'Enter' && answer) {
-                // The parent component should handle the navigation
+                
                 e.preventDefault();
               }
             }}
@@ -80,7 +80,6 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
         <div className={s.checkboxOptions}>
           {(() => {
             try {
-              // Handle both stringified JSON and already parsed array
               let options: string[] = [];
               
               if (question.options) {
