@@ -13,7 +13,7 @@ const QuizCard: React.FC<QuizCardProps> = ({ item }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const handleDelete = () => {
-    if (window.confirm("Ви впевнені, що хочете видалити цей квіз?")) {
+    if (window.confirm("Are you sure you want to delete this quiz?")) {
       dispatch(deleteQuiz(item.id));
       dispatch(fetchItem());
     }

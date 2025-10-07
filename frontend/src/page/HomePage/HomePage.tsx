@@ -10,17 +10,16 @@ export default function HomePage() {
       <div className={s.content}>
         <h1 className={s.header}>Quiz Master 🎉</h1>
         <p className={s.subtitle}>
-          Ласкаво просимо до нашого додатку! Тут ти можеш створювати власні
-          квізи, проходити цікаві тести, перевіряти свої знання та змагатися з
-          друзями. Обирай тему, тренуйся та отримуй нові досягнення щодня!
+          Welcome to our app! Here you can create your own quizzes, take
+          interesting tests, test your knowledge and compete with your friends.
+          Choose a topic, practice and get new achievements every day!
         </p>
         <p className={s.description}>
-          Наш додаток створений для того, щоб навчання було веселим та
-          інтерактивним. Долучайся, розвивай свій інтелект та діліться
-          результатами з іншими користувачами.
+          Our app is designed to make learning fun and interactive. Join us,
+          develop your intellect and share your results with other users.
         </p>
         <button className={s.btn} onClick={goToQuizCreation}>
-          Перейти до квізів
+          Go to Quizzes
         </button>
       </div>
     </section>

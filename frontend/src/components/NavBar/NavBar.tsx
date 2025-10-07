@@ -1,16 +1,15 @@
-
 import { NavLink } from "react-router-dom";
 import s from "./NavBar.module.scss";
 
 type NavItem = {
   label: string;
-  path: string; 
+  path: string;
 };
 
 export default function NavBar() {
   const navItems: NavItem[] = [
-    { label: "Квізи", path: "/quiz" },
-    { label: "Створити квіз", path: "/quizCreation" },
+    { label: "Quizzes", path: "/quiz" },
+    { label: "Create Quiz", path: "/quizCreation" },
   ];
 
   return (

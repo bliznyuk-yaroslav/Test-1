@@ -24,36 +24,42 @@ interface Props {
   isLoading?: boolean;
 }
 
-const questionSchema = z.object({
-  text: z.string().min(1, "Питання не може бути порожнім"),
-  type: z.enum(["BOOLEAN", "CHECKBOX", "TEXT"]),
-  options: z.string().optional(),
-  correctAnswer: z.string().optional(),
-  correctCheckboxAnswers: z.array(z.string()).optional(),
-}).refine(
-  (data) => {
-    if (data.type === 'TEXT' && !data.correctAnswer) {
-      return false;
+const questionSchema = z
+  .object({
+    text: z.string().min(1, "Question cannot be empty."),
+    type: z.enum(["BOOLEAN", "CHECKBOX", "TEXT"]),
+    options: z.string().optional(),
+    correctAnswer: z.string().optional(),
+    correctCheckboxAnswers: z.array(z.string()).optional(),
+  })
+  .refine(
+    (data) => {
+      if (data.type === "TEXT" && !data.correctAnswer) {
+        return false;
+      }
+      if (data.type === "BOOLEAN" && data.correctAnswer === undefined) {
+        return false;
+      }
+      if (
+        data.type === "CHECKBOX" &&
+        (!data.correctCheckboxAnswers ||
+          data.correctCheckboxAnswers.length === 0)
+      ) {
+        return false;
+      }
+      return true;
+    },
+    {
+      message: "Please indicate the correct answer.",
+      path: ["correctAnswer"],
     }
-    if (data.type === 'BOOLEAN' && data.correctAnswer === undefined) {
-      return false;
-    }
-    if (data.type === 'CHECKBOX' && (!data.correctCheckboxAnswers || data.correctCheckboxAnswers.length === 0)) {
-      return false;
-    }
-    return true;
-  },
-  {
-    message: "Будь ласка, вкажіть правильну відповідь",
-    path: ["correctAnswer"],
-  }
-);
+  );
 
 const quizSchema = z.object({
-  title: z.string().min(1, "Назва квізу обов'язкова"),
+  title: z.string().min(1, "Quiz title is required."),
   questions: z
     .array(questionSchema)
-    .min(1, "Потрібно додати хоча б одне питання"),
+    .min(1, "At least one question is required."),
 });
 
 type QuizFormValues = z.infer<typeof quizSchema>;
@@ -130,25 +136,25 @@ const CreateQuizForm: React.FC<Props> = ({ onSubmit, isLoading = false }) => {
         title: '',
         questions: []
       });
-   
-      toast.success('Квіз успішно створено!');
+
+      toast.success('Quiz created successfully!');
     } catch (error) {
-      toast.error('Помилка при створенні квізу');
+      toast.error('Error creating quiz. Please try again.');
       console.error('Error submitting form:', error);
     }
   };
 
   return (
     <form onSubmit={handleSubmit(submitForm)} className={styles.form}>
-      <h1 className={styles.title}>Створити новий квіз</h1>
+      <h1 className={styles.title}>Create New Quiz</h1>
 
       <div className={styles.formGroup}>
-        <label htmlFor="title">Назва квізу</label>
+        <label htmlFor="title">Quiz Title</label>
         <input
           id="title"
           type="text"
           {...register("title")}
-          placeholder="Введіть назву квізу"
+          placeholder="Enter quiz title"
           disabled={isLoading}
         />
         {errors.title && (
@@ -156,7 +162,7 @@ const CreateQuizForm: React.FC<Props> = ({ onSubmit, isLoading = false }) => {
         )}
       </div>
 
-      <h3>Питання</h3>
+      <h3>Questions</h3>
       {fields.map((field, index) => (
         <div key={field.id} className={styles.questionCard}>
           <button
@@ -169,12 +175,12 @@ const CreateQuizForm: React.FC<Props> = ({ onSubmit, isLoading = false }) => {
           </button>
 
           <div className={styles.formGroup}>
-            <label htmlFor={`question-${index}`}>Текст питання</label>
+            <label htmlFor={`question-${index}`}>Question Text</label>
             <input
               id={`question-${index}`}
               type="text"
               {...register(`questions.${index}.text`)}
-              placeholder="Введіть питання"
+              placeholder="Enter question"
               disabled={isLoading}
             />
             {errors.questions?.[index]?.text && (
@@ -185,15 +191,15 @@ const CreateQuizForm: React.FC<Props> = ({ onSubmit, isLoading = false }) => {
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor={`type-${index}`}>Тип відповіді</label>
+            <label htmlFor={`type-${index}`}>Answer Type</label>
             <select
               id={`type-${index}`}
               {...register(`questions.${index}.type`)}
               disabled={isLoading}
             >
-              <option value="BOOLEAN">Так/Ні</option>
-              <option value="CHECKBOX">Варіанти відповідей</option>
-              <option value="TEXT">Текстова відповідь</option>
+              <option value="BOOLEAN">True/False</option>
+              <option value="CHECKBOX">Multiple Choice</option>
+              <option value="TEXT">Text Answer</option>
             </select>
           </div>
 
@@ -201,19 +207,19 @@ const CreateQuizForm: React.FC<Props> = ({ onSubmit, isLoading = false }) => {
             <>
               <div className={styles.optionsInput}>
                 <label htmlFor={`options-${index}`}>
-                  Варіанти відповідей (розділіть комою)
+                  Answer Options (separate with commas)
                 </label>
                 <input
                   id={`options-${index}`}
                   type="text"
                   {...register(`questions.${index}.options`)}
-                  placeholder="Наприклад: Варіант 1, Варіант 2, Варіант 3"
+                  placeholder="For example: Option 1, Option 2, Option 3"
                   disabled={isLoading}
                 />
               </div>
               {watchQuestions[index]?.options && (
                 <div className={styles.correctAnswerInput}>
-                  <label>Позначте правильні відповіді:</label>
+                  <label>Mark the correct answers:</label>
                   <div className={styles.checkboxOptions}>
                     {watchQuestions[index]?.options
                       ?.split(',')
@@ -241,7 +247,7 @@ const CreateQuizForm: React.FC<Props> = ({ onSubmit, isLoading = false }) => {
             </>
           ) : watchQuestions?.[index]?.type === "BOOLEAN" ? (
             <div className={styles.correctAnswerInput}>
-              <label>Правильна відповідь</label>
+              <label>Correct Answer</label>
               <div className={styles.booleanOptions}>
                 <label>
                   <input
@@ -250,7 +256,7 @@ const CreateQuizForm: React.FC<Props> = ({ onSubmit, isLoading = false }) => {
                     {...register(`questions.${index}.correctAnswer`)}
                     disabled={isLoading}
                   />
-                  <span>Так</span>
+                  <span>True</span>
                 </label>
                 <label>
                   <input
@@ -259,7 +265,7 @@ const CreateQuizForm: React.FC<Props> = ({ onSubmit, isLoading = false }) => {
                     {...register(`questions.${index}.correctAnswer`)}
                     disabled={isLoading}
                   />
-                  <span>Ні</span>
+                  <span>False</span>
                 </label>
               </div>
               {errors.questions?.[index]?.correctAnswer && (
@@ -271,13 +277,13 @@ const CreateQuizForm: React.FC<Props> = ({ onSubmit, isLoading = false }) => {
           ) : watchQuestions?.[index]?.type === "TEXT" && (
             <div className={styles.correctAnswerInput}>
               <label htmlFor={`correct-answer-${index}`}>
-                Правильна відповідь
+                Correct Answer
               </label>
               <input
                 id={`correct-answer-${index}`}
                 type="text"
                 {...register(`questions.${index}.correctAnswer`)}
-                placeholder="Введіть правильну відповідь"
+                placeholder="Enter correct answer"
                 disabled={isLoading}
               />
               {errors.questions?.[index]?.correctAnswer && (
@@ -296,7 +302,7 @@ const CreateQuizForm: React.FC<Props> = ({ onSubmit, isLoading = false }) => {
         className={styles.addButton}
         disabled={isLoading}
       >
-        + Додати питання
+        + Add Question
       </button>
 
       <button
@@ -304,7 +310,7 @@ const CreateQuizForm: React.FC<Props> = ({ onSubmit, isLoading = false }) => {
         className={styles.submitButton}
         disabled={isLoading || fields.length === 0}
       >
-        {isLoading ? "Збереження..." : "Зберегти квіз"}
+        {isLoading ? "Saving..." : "Save Quiz"}
       </button>
     </form>
   );

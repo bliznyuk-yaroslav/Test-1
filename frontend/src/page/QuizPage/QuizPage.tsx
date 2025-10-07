@@ -6,7 +6,7 @@ import QuizList from "../../components/QuizList/QuizList";
 const QuizPage: React.FC = () => {
   return (
     <div className={s.container}>
-      <h1>Вибери потрібний тобі квіз</h1>
+      <h1>Choose the quiz you need</h1>
       <QuizList />
     </div>
   );
