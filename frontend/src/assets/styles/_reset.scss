@@ -1,0 +1,63 @@
+@use "./mixins";
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: "Helvetica", Arial, sans-serif;
+  background-color: rgba(14, 15, 18, 1);
+  color: #d4d4d4;
+  margin: 0 auto;
+
+  max-width: 375px;
+  @include mixins.media(tablet) {
+    max-width: 992px;
+  }
+  @include mixins.media(desktop) {
+    max-width: 1366px;
+  }
+  @include mixins.media(desktop-2k) {
+    max-width: 1920px;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}

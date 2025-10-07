@@ -1,0 +1,37 @@
+.navigationButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.navButton {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  color: #2c3e50;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background-color: #e0e0e0;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.nextButton {
+  background-color: #3498db;
+  color: white;
+  margin-left: auto;
+
+  &:hover:not(:disabled) {
+    background-color: #2980b9;
+  }
+}

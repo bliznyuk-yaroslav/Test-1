@@ -1,0 +1,11 @@
+.background {
+  position: fixed;
+  width: 120%;
+  height: 120%;
+  top: -10%;
+  left: -10%;
+  background: linear-gradient(270deg, #ff6ec4, #7873f5, #4adede);
+  background-size: 400% 400%;
+  transition: transform 0.1s ease-out;
+  z-index: -1;
+}

@@ -1,0 +1,26 @@
+@use "sass:math";
+@use "./variables" as *;
+
+@mixin media($_screen) {
+  @if $_screen == mobile {
+    @media screen and (min-width: $mobile) {
+      @content;
+    }
+  } @else if $_screen == tablet {
+    @media screen and (min-width: $tablet) {
+      @content;
+    }
+  } @else if $_screen == desktop {
+    @media screen and (min-width: $desktop) {
+      @content;
+    }
+  } @else if $_screen == desktop-2k {
+    @media screen and (min-width: $desktop-2k) {
+      @content;
+    }
+  }
+}
+@mixin font($_fsz, $_lnh) {
+  font-size: #{$_fsz}px;
+  line-height: calc($_lnh / $_fsz);
+}
