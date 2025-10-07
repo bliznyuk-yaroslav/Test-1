@@ -1,10 +1,10 @@
 import { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import Layout from "../Layout/Layout.tsx";
-import HomePage from "../../page/HomePage/HomePage";
-import QuizPage from "../../page/QuizPage/QuizPage";
-import QuizCreationPage from "../../page/QuizCreationPage/QuizCreationPage.tsx";
-import QuizDetailPage from "../../page/QuizDetailPage/QuizDetailPage.tsx";
+import Layout from "./components/Layout/Layout.tsx";
+import HomePage from "./page/HomePage/HomePage.tsx";
+import QuizPage from "./page/QuizPage/QuizPage.tsx";
+import QuizCreationPage from "./page/QuizCreationPage/QuizCreationPage.tsx";
+import QuizDetailPage from "./page/QuizDetailPage/QuizDetailPage.tsx";
 function App() {
   return (
     <Suspense fallback="Loading...">

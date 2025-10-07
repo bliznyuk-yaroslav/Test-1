@@ -29,8 +29,8 @@ A full-stack quiz creation platform built with React, TypeScript, Express, and P
 
 ## 📦 Prerequisites
 
-- Node.js 
-- npm
+- Node.js  
+- npm 
 - PostgreSQL 
 
 ## 🚀 Getting Started
@@ -77,36 +77,20 @@ The application will be available at `http://localhost:5173`
 ### Backend (`.env`)
 ```env
 DATABASE_URL="postgresql://user:password@localhost:5432/quiz_db?schema=public"
-
 PORT=5000
 ```
-
-#### Start Backend
-```bash
-cd backend
-npm install
-npm run dev
-```
-
-#### Start Frontend (in a new terminal)
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-The application will be available at `http://localhost:5173`
 
 ## 🏗 Project Structure
 
 ```
-quiz-builder/
+Test-1/
 ├── backend/               # Express backend
 │   ├── prisma/           # Database schema & migrations
 │   ├── src/              # Source code
 │   │   ├── controllers/  # Request handlers
 │   │   ├── routers/      # API routes
 │   │   └── app.ts        # Express app setup
+│   ├── .env.example      # Environment variables example
 │   └── package.json
 │
 ├── frontend/             # React frontend
@@ -121,9 +105,19 @@ quiz-builder/
 └── README.md
 ```
 
-## 📝 License
+## 🚀 Available Scripts
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+### Backend
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm start` - Start production server
+- `npx prisma migrate dev` - Run database migrations
+
+### Frontend
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+
 
 ## 🙏 Acknowledgments
 

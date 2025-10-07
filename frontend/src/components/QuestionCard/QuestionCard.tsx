@@ -1,4 +1,3 @@
-import React from 'react';
 import s from './QuestionCard.module.scss';
 
 interface QuestionCardProps {
