@@ -13,6 +13,7 @@ A full-stack quiz creation platform built with React, TypeScript, Express, and P
 ## 🛠 Tech Stack
 
 ### Frontend
+
 - React with TypeScript
 - Vite (Build Tool)
 - React Router (Routing)
@@ -21,6 +22,7 @@ A full-stack quiz creation platform built with React, TypeScript, Express, and P
 - SCSS Modules (Styling)
 
 ### Backend
+
 - Node.js with Express
 - TypeScript
 - Prisma (ORM)
@@ -29,19 +31,21 @@ A full-stack quiz creation platform built with React, TypeScript, Express, and P
 
 ## 📦 Prerequisites
 
-- Node.js 
+- Node.js
 - npm
-- PostgreSQL 
+- PostgreSQL
 
 ## 🚀 Getting Started
 
 ### 1. Clone the Repository
+
 ```bash
 git clone https://github.com/bliznyuk-yaroslav/Test-1.git
 cd Test-1
 ```
 
 ### 2. Backend Setup
+
 ```bash
 cd backend
 
@@ -60,6 +64,7 @@ npm run dev
 ```
 
 ### 3. Frontend Setup
+
 ```bash
 cd ../frontend
 
@@ -75,12 +80,14 @@ The application will be available at `http://localhost:5173`
 ## 🌐 Environment Variables
 
 ### Backend (`.env`)
+
 ```env
 DATABASE_URL="postgresql://user:password@localhost:5432/quiz_db?schema=public"
 PORT=5000
 ```
 
 #### Start Backend
+
 ```bash
 cd backend
 npm install
@@ -88,6 +95,7 @@ npm run dev
 ```
 
 #### Start Frontend (in a new terminal)
+
 ```bash
 cd frontend
 npm install
@@ -120,8 +128,42 @@ quiz-builder/
 └── README.md
 ```
 
-
-
 ## 🙏 Acknowledgments
 
 - Built with ❤️ using modern web technologies
+
+### Examples of backend queries
+
+All Quiz
+GET: http://localhost:5000/quizzes
+Quiz ID
+GET:http://localhost:5000/quizzes/{id}
+Delete quiz
+DELETE:http://localhost:5000/quizzes/{id}
+Creating a quiz
+POST: http://localhost:5000/quizzes
+Expamle JSON Body:
+
+```
+{
+  "title": "Programming Basics",
+  "questions": [
+    {
+      "type": "BOOLEAN",
+      "text": "JavaScript is a programming language?",
+      "correctAnswer": "true"
+    },
+    {
+      "type": "TEXT",
+      "text": "What is the operator for assigning a value to a variable?",
+      "correctAnswer": "="
+    },
+    {
+      "type": "CHECKBOX",
+      "text": "Which of these are programming languages?",
+      "options": "[\"Python\", \"HTML\", \"C++\"]",
+      "correctAnswer": "[\"Python\",\"C++\"]"
+    }
+  ]
+}
+```
