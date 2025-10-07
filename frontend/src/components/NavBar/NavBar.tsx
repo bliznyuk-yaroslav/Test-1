@@ -1,10 +1,10 @@
-import React from "react";
+
 import { NavLink } from "react-router-dom";
 import s from "./NavBar.module.scss";
 
 type NavItem = {
   label: string;
-  path: string; // перейменував href на path для консистентності з роутером
+  path: string; 
 };
 
 export default function NavBar() {

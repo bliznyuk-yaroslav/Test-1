@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React  from "react";
 import s from "./QuizCard.module.scss";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "../../redux/store";
