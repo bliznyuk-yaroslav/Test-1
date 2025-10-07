@@ -29,5 +29,4 @@ enum QuestionType {
   BOOLEAN
   INPUT
   CHECKBOX
-  TEXT
 }
