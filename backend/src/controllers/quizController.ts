@@ -54,12 +54,12 @@ export const deleteQuiz = async (req: Request, res: Response) => {
     const { id } = req.params;
     const quizId = Number(id);
     
-    // First delete all related questions
+  
     await prisma.question.deleteMany({
       where: { quizId }
     });
     
-    // Then delete the quiz
+  
     await prisma.quiz.delete({ 
       where: { id: quizId } 
     });
@@ -67,7 +67,7 @@ export const deleteQuiz = async (req: Request, res: Response) => {
     res.status(204).send();
   } catch (error: any) {
     if (error.code === 'P2025') {
-      // Record to delete does not exist
+    
       return res.status(404).json({ message: 'Quiz not found' });
     }
     console.error('Error deleting quiz:', error);

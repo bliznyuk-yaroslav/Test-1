@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import type { QuizItem, QuizPayload, QuizFull } from "./types.ts";
 
-axios.defaults.baseURL = "http://localhost:5000";
+axios.defaults.baseURL = "https://test-1-7j40.onrender.com";
 
 export const fetchItem = createAsyncThunk<
   QuizItem[],

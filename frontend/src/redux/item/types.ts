@@ -2,7 +2,7 @@ export interface QuizItem {
   id: number;
   title: string;
   description: string;
-  questionsCount: number;
+  questionCount: number;
 }
 export interface QuizPayload {
   title: string;
@@ -10,7 +10,7 @@ export interface QuizPayload {
     text: string;
     type: "BOOLEAN" | "CHECKBOX" | "TEXT";
     options?: string | null;
-    correctAnswer?: string;
+    correctAnswer?: string | null;
   }[];
 }
 export interface Question {

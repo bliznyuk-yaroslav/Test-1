@@ -5,7 +5,7 @@ interface QuestionCardProps {
   question: {
     id: number;
     text: string;
-    type: 'BOOLEAN' | 'TEXT' | 'CHECKBOX';
+    type: 'BOOLEAN' | 'TEXT' | 'CHECKBOX' | 'INPUT';
     options?: string;
   };
   answer: string | string[];
@@ -57,19 +57,20 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
         </div>
       )}
 
-      {question.type === 'TEXT' && (
+      {(question.type === 'TEXT' || question.type === 'INPUT') && (
         <div className={s.textAnswer}>
           <input
-            type="text"
+            type={question.type === 'TEXT' ? 'text' : 'text'}
             value={typeof answer === 'string' ? answer : ''}
             onChange={(e) => onAnswer(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === 'Enter' && answer) {
-                
                 e.preventDefault();
               }
             }}
-            placeholder="Type your answer..."
+            placeholder={question.type === 'TEXT' 
+              ? 'Type your answer...' 
+              : 'Enter your response...'}
             className={s.textInput}
             autoFocus
           />
