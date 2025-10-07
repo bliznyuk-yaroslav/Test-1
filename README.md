@@ -135,16 +135,20 @@ quiz-builder/
 ### Examples of backend queries
 
 All Quiz
-GET: http://localhost:5000/quizzes
+
+- GET: http://localhost:5000/quizzes
 
 Quiz ID
-GET:http://localhost:5000/quizzes/{id}
+
+- GET:http://localhost:5000/quizzes/{id}
 
 Delete quiz
-DELETE:http://localhost:5000/quizzes/{id}
+
+- DELETE:http://localhost:5000/quizzes/{id}
 
 Creating a quiz
-POST: http://localhost:5000/quizzes
+
+- POST: http://localhost:5000/quizzes
 
 
 ####Expamle JSON Body:
